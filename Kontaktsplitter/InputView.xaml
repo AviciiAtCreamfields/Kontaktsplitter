@@ -1,0 +1,27 @@
+﻿<Window x:Class="Kontaktsplitter.InputView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kontaktsplitter"
+        mc:Ignorable="d"
+        Title="InputView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button HorizontalAlignment="Left" Margin="49.5,158,0,0" Name="OKButton" Content="OK" VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.462,1.917" Grid.Column="1" Height="23">
+        </Button>
+        <TextBox Name="TextBox"  HorizontalAlignment="Left"  Height="23" Margin="97,158,0,0" TextWrapping="Wrap" Text="{Binding TextBox}" VerticalAlignment="Top" Width="282"/>
+        <Button Content="Titel hinzufügen" HorizontalAlignment="Left" Margin="97,38,0,0" VerticalAlignment="Top" Width="143" Grid.Row="1" Height="28"/>
+        <TextBlock HorizontalAlignment="Left" Margin="97,124,0,0" TextWrapping="Wrap" Text="Kontakt:" VerticalAlignment="Top" Width="82"/>
+    </Grid>
+</Window>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="Kontaktsplitter.ValidateView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kontaktsplitter"
+        mc:Ignorable="d"
+        Title="ValidateView" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="10"  TextWrapping="Wrap" Text="Manuelle Zuordnung" VerticalAlignment="Top"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Anrede" VerticalAlignment="Top" />
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding AnredeText}"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Briefanrede" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding BriefanredeText}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding TitelText}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Geschlecht" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding GeschlechtText}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding VornameText}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="2">
+            <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding NachnameText}"/>
+        </StackPanel>
+        <ListBox x:Name="listboxFolder1" Grid.Row="1"  BorderThickness="0" 
+                 ItemsSource="{Binding ListboxItems}"/>
+        <Button  Content="Übernehmen" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="5" VerticalAlignment="Top" Width="175" Height="50"/>
+
+
+    </Grid>
+</Window>

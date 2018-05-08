@@ -54,7 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="AddTitleView.xaml.cs">
+      <DependentUpon>AddTitleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateView.xaml.cs">
+      <DependentUpon>ValidateView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddTitleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -62,10 +72,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="InputView.xaml.cs">
+      <DependentUpon>InputView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ValidateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
