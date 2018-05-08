@@ -20,9 +20,16 @@ namespace Kontaktsplitter
     /// </summary>
     public partial class InputView : Window
     {
-        public InputView()
+        private readonly Controller _controller;
+        public InputView(Controller cont)
         {
+            _controller = cont;
             InitializeComponent();
+        }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.ParsString();
         }
     }
 }

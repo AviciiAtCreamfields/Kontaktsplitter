@@ -17,11 +17,12 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock HorizontalAlignment="Left" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"/>
-            <StackPanel  >
+            <StackPanel Orientation="Horizontal" >
             <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                </StackPanel>
-                </StackPanel>
-        <Button Content="OK!" HorizontalAlignment="Left" Margin="231.994,208,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                <Button Content="OK!" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+            </StackPanel>
+        </StackPanel>
+       
         <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
 
     </Grid>

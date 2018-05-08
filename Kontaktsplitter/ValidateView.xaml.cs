@@ -21,6 +21,7 @@ namespace Kontaktsplitter
     {
         public ValidateView()
         {
+           
             InitializeComponent();
         }
     }

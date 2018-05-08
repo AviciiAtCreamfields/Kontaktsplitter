@@ -57,6 +57,8 @@
     <Compile Include="AddTitleView.xaml.cs">
       <DependentUpon>AddTitleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Contact.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="ValidateView.xaml.cs">
       <DependentUpon>ValidateView.xaml</DependentUpon>
     </Compile>
