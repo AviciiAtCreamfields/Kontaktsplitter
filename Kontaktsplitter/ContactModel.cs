@@ -7,14 +7,23 @@ using System.Threading.Tasks;
 
 namespace Kontaktsplitter
 {
-    public class Contact
+    public class ContactModel
     {
         private Country _country = Country.DE;
         private List<string> _listboxItems = new List<string>();
+        private string _salutation="default";
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string Input { get; set; }
-        public string Salutation { get; set; }
+        public string Salutation
+        {
+            get => _salutation;
+            set
+            {
+                _salutation = value;
+                OnPropertyChanged("Salutation");
+            }
+        }
         public string LetterSalutation { get; set; }
         public string Title { get; set; }
         public Gender Gender { get; set; }
@@ -33,13 +42,13 @@ namespace Kontaktsplitter
 
         }
 
-        public List<string> ListboxItems
+        public List<string> ListViewItems
         {
             get => _listboxItems;
             set
             {
                 _listboxItems = value;
-                OnPropertyChanged("ListBoxItems");
+                OnPropertyChanged("ListViewItems");
             }
         }
 

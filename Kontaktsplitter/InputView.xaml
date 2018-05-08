@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="InputView" Height="450" Width="800">
     <Window.DataContext>
-        <local:Contact/>
+        <local:ContactModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>

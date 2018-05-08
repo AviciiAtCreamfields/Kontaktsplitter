@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ValidateView" Height="450" Width="800">
     <Window.DataContext>
-        <local:Contact/>
+        <local:ContactModel/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,14 +25,14 @@
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Margin="10"  TextWrapping="Wrap" Text="Manuelle Zuordnung" VerticalAlignment="Top"/>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" Drop="UIElement_OnDrop" AllowDrop="True" DragEnter="UIElement_OnDragEnter">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Anrede" VerticalAlignment="Top" />
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding AnredeText}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Salutation, Mode=TwoWay}"/>
 
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Briefanrede" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding BriefanredeText}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding BriefanredeText}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
@@ -51,8 +51,8 @@
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
             <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding NachnameText}"/>
         </StackPanel>
-        <ListBox x:Name="listboxFolder1" Grid.Row="1"  BorderThickness="0" 
-                 ItemsSource="{Binding ListboxItems}"/>
+        <ListView x:Name="listboxFolder1" Grid.Row="1"  BorderThickness="0" 
+                 ItemsSource="{Binding ListViewItems}" PreviewMouseLeftButtonDown="ListboxFolder1_OnPreviewMouseLeftButtonDown" PreviewMouseMove="ListboxFolder1_OnPreviewMouseMove"/>
         <Button  Content="Übernehmen" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="5" VerticalAlignment="Top" Width="175" Height="50"/>
 
 

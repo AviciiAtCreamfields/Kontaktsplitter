@@ -8,27 +8,34 @@ namespace Kontaktsplitter
 {
     public class Controller
     {
-        private readonly Contact _contact;
+        private readonly ContactModel _contactModelModel;
+        private InputView inputView;
+        private AddTitleView addTitleView;
+        private ValidateView validateView;
 
         public Controller()
         {
-             _contact = new Contact();
-            var inputView = new InputView(this);
-            var addTitleView = new AddTitleView();
-            var validateView = new ValidateView();
+             _contactModelModel = new ContactModel();
+             inputView = new InputView(this);
+             addTitleView = new AddTitleView();
+             validateView = new ValidateView(_contactModelModel);
 
-            inputView.DataContext = _contact;
-            addTitleView.DataContext = _contact;
-            validateView.DataContext = _contact;
+            inputView.DataContext = _contactModelModel;
+            addTitleView.DataContext = _contactModelModel;
+            validateView.DataContext = _contactModelModel;
             inputView.Show();
 
         }
 
         public void ParsString()
         {
-            var inputList =_contact.Input.Split(' ');
+            var inputList =_contactModelModel.Input.Split(' ');
+            foreach (string s in inputList)
+            {
+                _contactModelModel.ListViewItems.Add(s);
+            }
 
-
+            validateView.ShowDialog();
         }
 
         private void HandleError()
