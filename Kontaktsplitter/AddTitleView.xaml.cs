@@ -31,6 +31,7 @@ namespace Kontaktsplitter
         {
       
             InitializeComponent();
+            showXMLinList();
         }
 
         public void addTitleToXML(String title)
@@ -60,6 +61,11 @@ namespace Kontaktsplitter
                 newNode.InnerText = title;
                 doc.DocumentElement.AppendChild(newNode);
                 doc.Save(XML_NAME);
+
+                ListViewItem viewItem = new ListViewItem();
+                viewItem.Content = newNode.InnerText;
+                XML_List.Items.Add(viewItem);
+
             }
 
         }
@@ -85,11 +91,66 @@ namespace Kontaktsplitter
         {
             addTitleToXML(title_textbox.Text);
             title_textbox.Text = "";
+
         }
 
         private void title_textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ok_button.IsEnabled = true;
+        }
+
+        private void showXMLinList()
+        {
+            if (File.Exists(XML_NAME))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(XML_NAME);
+                XmlNodeList allNodes = doc.GetElementsByTagName(XML_CHILD);
+                foreach (XmlNode node in allNodes)
+                {
+                        ListViewItem viewItem = new ListViewItem();
+                        viewItem.Content = node.InnerText;
+                        XML_List.Items.Add(viewItem);
+                }
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {  
+
+            if (XML_List.SelectedItems != null)
+            {
+                // Benutzung einer extra Liste, da entfernen direct auf der Selected Collection zu Fehlern führt
+                List<ListViewItem> itemsToBeRemoved = new List<ListViewItem>();
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(XML_NAME);
+                XmlNodeList allNodes = doc.GetElementsByTagName(XML_CHILD);
+
+                foreach (ListViewItem itemSelected in XML_List.SelectedItems)
+                {
+                    itemsToBeRemoved.Add(itemSelected);
+                }
+
+               foreach(ListViewItem item in itemsToBeRemoved)
+                {   
+                    foreach (XmlNode node in allNodes)
+                    {
+                        if (node.InnerText.Equals(item.Content))
+                        {
+                            XmlNode parent = node.ParentNode;
+                            parent.RemoveChild(node);
+                            string newXML = doc.OuterXml;
+                            doc.Save(XML_NAME);
+                            break;
+                        } 
+                    }
+
+                    XML_List.Items.Remove(item);
+
+                }
+                    
+            }
         }
     }
 }
