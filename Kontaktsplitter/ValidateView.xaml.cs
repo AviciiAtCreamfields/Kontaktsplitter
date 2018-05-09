@@ -22,9 +22,12 @@ namespace Kontaktsplitter
     {
         private Point startPoint;
         private ContactModel context;
+        private Controller _controller;
 
-        public ValidateView(ContactModel cont)
+
+        public ValidateView(Controller controller, ContactModel cont)
         {
+            _controller = controller;
             //DataContext = cont;
             context = cont;
             
@@ -58,7 +61,7 @@ namespace Kontaktsplitter
                         ItemFromContainer(listViewItem);
 
                     // Initialize the drag & drop operation
-                    DataObject dragData = new DataObject("myFormat", contact);
+                    DataObject dragData = new DataObject(DataFormats.Text, contact);
                     DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
                 }
                
@@ -82,15 +85,15 @@ namespace Kontaktsplitter
 
         private void UIElement_OnDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("myFormat"))
+            if (e.Data.GetDataPresent(DataFormats.Text))
             {
-                string contact = e.Data.GetData("myFormat") as string;
+                string contact = e.Data.GetData(DataFormats.Text) as string;
                 var stringBuilder = new StringBuilder();
                 stringBuilder.Append(context.Salutation);
                 stringBuilder.Append(" ");
                 stringBuilder.Append(contact);
-                var cont = (ContactModel) DataContext;
-                cont.Salutation = stringBuilder.ToString();
+                var cont = (ContactModel) this.DataContext;
+                var check = cont.Salutation; /*= stringBuilder.ToString();*/
             }
 
         }
@@ -103,11 +106,17 @@ namespace Kontaktsplitter
 
         private void UIElement_OnDragEnter(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent("myFormat") ||
+            if (!e.Data.GetDataPresent(DataFormats.Text) ||
                 sender == e.Source)
             {
                 e.Effects = DragDropEffects.None;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.TEST();
+
         }
     }
 }

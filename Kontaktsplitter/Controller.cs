@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Kontaktsplitter
 {
@@ -15,10 +16,10 @@ namespace Kontaktsplitter
 
         public Controller()
         {
-             _contactModelModel = new ContactModel();
-             inputView = new InputView(this);
-             addTitleView = new AddTitleView();
-             validateView = new ValidateView(_contactModelModel);
+            _contactModelModel = new ContactModel();
+            inputView = new InputView(this);
+            addTitleView = new AddTitleView();
+            validateView = new ValidateView(this, _contactModelModel);
 
             inputView.DataContext = _contactModelModel;
             addTitleView.DataContext = _contactModelModel;
@@ -27,13 +28,36 @@ namespace Kontaktsplitter
 
         }
 
-        public void ParsString()
+        public void TEST()
+        {
+            var foo = 1;
+        }
+    
+
+    public void ParsString()
         {
             var inputList =_contactModelModel.Input.Split(' ');
+            var titels = new List<string>();
+            XmlDocument titelDoc = new XmlDocument();
+            titelDoc.Load(@"C:\Users\Nils Lohmiller\Desktop\titel.xml");
+            XmlElement root = titelDoc.DocumentElement;
+            foreach (XmlNode childNode in root.ChildNodes)
+            {
+                if (childNode.Attributes != null) titels.Add(childNode.InnerText);
+            }
             foreach (string s in inputList)
             {
-                _contactModelModel.ListViewItems.Add(s);
+                if (titels.Contains(s))
+                {
+                    _contactModelModel.Title += s;
+                }
+                else
+                {
+                    _contactModelModel.ListViewItems.Add(s);
+                }
             }
+
+
 
             validateView.ShowDialog();
         }
