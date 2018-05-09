@@ -39,7 +39,7 @@ namespace Kontaktsplitter
             var inputList =_contactModelModel.Input.Split(' ');
             var titels = new List<string>();
             XmlDocument titelDoc = new XmlDocument();
-            titelDoc.Load(@"C:\Users\Nils Lohmiller\Desktop\titel.xml");
+            titelDoc.Load(@"C:\Users\Nils Lohmiller\source\repos\Kontaktsplitter\Kontaktsplitter\XML\titel.xml");
             XmlElement root = titelDoc.DocumentElement;
             foreach (XmlNode childNode in root.ChildNodes)
             {

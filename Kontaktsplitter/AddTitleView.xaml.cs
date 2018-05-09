@@ -64,7 +64,7 @@ namespace Kontaktsplitter
 
                 ListViewItem viewItem = new ListViewItem();
                 viewItem.Content = newNode.InnerText;
-                XML_List.Items.Add(viewItem);
+                //XML_List.Items.Add(viewItem);
 
             }
 
@@ -110,7 +110,7 @@ namespace Kontaktsplitter
                 {
                         ListViewItem viewItem = new ListViewItem();
                         viewItem.Content = node.InnerText;
-                        XML_List.Items.Add(viewItem);
+                       // XML_List.Items.Add(viewItem);
                 }
             }
         }
@@ -118,7 +118,7 @@ namespace Kontaktsplitter
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {  
 
-            if (XML_List.SelectedItems != null)
+            //if (XML_List.SelectedItems != null)
             {
                 // Benutzung einer extra Liste, da entfernen direct auf der Selected Collection zu Fehlern führt
                 List<ListViewItem> itemsToBeRemoved = new List<ListViewItem>();
@@ -127,10 +127,10 @@ namespace Kontaktsplitter
                 doc.Load(XML_NAME);
                 XmlNodeList allNodes = doc.GetElementsByTagName(XML_CHILD);
 
-                foreach (ListViewItem itemSelected in XML_List.SelectedItems)
-                {
-                    itemsToBeRemoved.Add(itemSelected);
-                }
+                //foreach (ListViewItem itemSelected in XML_List.SelectedItems)
+                //{
+                //    itemsToBeRemoved.Add(itemSelected);
+                //}
 
                foreach(ListViewItem item in itemsToBeRemoved)
                 {   
@@ -146,7 +146,7 @@ namespace Kontaktsplitter
                         } 
                     }
 
-                    XML_List.Items.Remove(item);
+                    //XML_List.Items.Remove(item);
 
                 }
                     
