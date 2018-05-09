@@ -58,7 +58,7 @@ namespace Kontaktsplitter
                 }
 
                 XmlNode newNode = doc.CreateNode(XmlNodeType.Element, XML_CHILD, null);
-                newNode.InnerText = title;
+                newNode.InnerText = title.Trim();
                 doc.DocumentElement.AppendChild(newNode);
                 doc.Save(XML_NAME);
 
