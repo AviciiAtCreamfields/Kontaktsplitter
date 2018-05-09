@@ -71,6 +71,11 @@ namespace Kontaktsplitter
         {
 
         }
+
+        public void addTitle()
+        {
+            addTitleView.ShowDialog();
+        }
     }
 
 }
