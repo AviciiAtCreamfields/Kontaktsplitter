@@ -18,8 +18,8 @@
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock HorizontalAlignment="Left" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"/>
             <StackPanel Orientation="Horizontal" >
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                <Button Content="OK!" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="title_textbox" TextChanged="title_textbox_TextChanged"/>
+                <Button Content="OK!" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click" Name="ok_button" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
        
