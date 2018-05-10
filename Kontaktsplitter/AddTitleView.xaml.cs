@@ -31,22 +31,25 @@ namespace Kontaktsplitter
         {
       
             InitializeComponent();
+            init();
             showXMLinList();
         }
 
-        public void addTitleToXML(String title)
+        public void init()
         {
             if (!File.Exists(XML_NAME))
             {
                 XmlWriter xmlWriter = XmlWriter.Create(XML_NAME);
                 xmlWriter.WriteStartElement(XML_PARENT);
-                xmlWriter.WriteStartElement(XML_CHILD);
-                xmlWriter.WriteString(title);
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndDocument();
                 xmlWriter.Close();
-            }else
-            {
+            }
+            else return;
+        }
+
+        public void addTitleToXML(String title)
+        {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(XML_NAME);
                 bool redundantTitle = parseXml(title, doc);
@@ -65,8 +68,6 @@ namespace Kontaktsplitter
                 ListViewItem viewItem = new ListViewItem();
                 viewItem.Content = newNode.InnerText;
                 //XML_List.Items.Add(viewItem);
-
-            }
 
         }
         
@@ -101,8 +102,6 @@ namespace Kontaktsplitter
 
         private void showXMLinList()
         {
-            if (File.Exists(XML_NAME))
-            {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(XML_NAME);
                 XmlNodeList allNodes = doc.GetElementsByTagName(XML_CHILD);
@@ -112,7 +111,6 @@ namespace Kontaktsplitter
                         viewItem.Content = node.InnerText;
                        // XML_List.Items.Add(viewItem);
                 }
-            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
