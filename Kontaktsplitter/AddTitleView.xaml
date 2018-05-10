@@ -24,7 +24,7 @@
         </StackPanel>
         <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <ScrollViewer Height="200">
+            <ScrollViewer VerticalAlignment="Top">
                 <ListView Name="XML_List"></ListView>
             </ScrollViewer>
             <Button Content="Löschen" Click="Button_Click_1"/>
