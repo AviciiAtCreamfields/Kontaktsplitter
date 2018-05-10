@@ -22,10 +22,12 @@
                 <Button Content="OK!" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click" Name="ok_button" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
-        <ScrollViewer>
-            <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
-        </ScrollViewer>
-        
-
+        <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <ScrollViewer Height="200">
+                <ListView Name="XML_List"></ListView>
+            </ScrollViewer>
+            <Button Content="Löschen" Click="Button_Click_1"/>
+        </StackPanel>
     </Grid>
 </Window>
