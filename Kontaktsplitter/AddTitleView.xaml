@@ -18,12 +18,14 @@
         <StackPanel Grid.Row="1" Grid.Column="2" >
             <TextBlock HorizontalAlignment="Left" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"/>
             <StackPanel Orientation="Horizontal" >
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="title_textbox" TextChanged="title_textbox_TextChanged"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="title_textbox" TextChanged="title_textbox_TextChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                 <Button Content="OK!" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click" Name="ok_button" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
-       
-        <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
+        <ScrollViewer>
+            <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
+        </ScrollViewer>
+        
 
     </Grid>
 </Window>

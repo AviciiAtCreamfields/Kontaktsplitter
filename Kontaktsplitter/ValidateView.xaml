@@ -23,33 +23,35 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Anrede" VerticalAlignment="Top" />
-            <TextBox Drop="UIElement_OnDrop" AllowDrop="True" DragEnter="UIElement_OnDragEnter" Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Drop="UIElement_OnDrop" AllowDrop="True" DragEnter="UIElement_OnDragEnter" Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Briefanrede" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding LetterSalutation}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding LetterSalutation}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Geschlecht" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Name="Gender"  Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Gender}"/>
+            <TextBox Name="Gender"  Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Gender}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding FirstName}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding FirstName}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding LastName}"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding LastName}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
-        <ListView x:Name="listboxFolder1" Grid.Row="1"  BorderThickness="0" 
+        <ScrollViewer>
+            <ListView x:Name="listboxFolder1" Grid.Row="1"  BorderThickness="0" 
                  ItemsSource="{Binding ListViewItems}" PreviewMouseLeftButtonDown="ListboxFolder1_OnPreviewMouseLeftButtonDown" PreviewMouseMove="ListboxFolder1_OnPreviewMouseMove"/>
+        </ScrollViewer>
         <Button  Content="Übernehmen" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="5" VerticalAlignment="Top" Width="175" Height="50" Click="Button_Click"/>
 
 
