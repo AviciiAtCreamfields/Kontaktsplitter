@@ -16,7 +16,7 @@ namespace Kontaktsplitter
         private readonly InputView _inputView;
         private readonly AddTitleView _addTitleView;
         private ValidateView _validateView;
-        private string EN="EN";
+        private string EN = "EN";
         private const string MALE = "Male";
 
         public Controller()
@@ -24,11 +24,11 @@ namespace Kontaktsplitter
             _contactModelModel = new ContactModel();
             _inputView = new InputView(this);
             _addTitleView = new AddTitleView(_contactModelModel);
-           
+
 
             _inputView.DataContext = _contactModelModel;
             _addTitleView.DataContext = _contactModelModel;
-           
+
             _inputView.Show();
         }
 
@@ -44,56 +44,20 @@ namespace Kontaktsplitter
             {
                 // TODO Fehler
             }
+
             var inputList = _contactModelModel.Input.Split(' ').ToList();
+            var inputList2 = _contactModelModel.Input.Split(' ').ToList();
             inputList.RemoveAll(p => p.Equals(""));
+            inputList2.RemoveAll(p => p.Equals(""));
             init(out var titels, out var genderDict);
 
-            CheckForlastAndFirstName(titels, inputList, genderDict);
+            CheckForlastAndFirstName(titels, inputList, genderDict, inputList2);
 
-           
+
             //Sting parsen ud auf titel und Anrede überprüfen
             foreach (string s in inputList)
             {
-                if (titels.Contains(s))
-                {
-                    _contactModelModel.Title += s+" ";
-                }
-                else if (genderDict.ContainsKey(s))
-                {
-                    genderDict.TryGetValue(s, out var genderValue);
-                    if (genderValue != null && genderValue.First().Equals(MALE))
-                    {
-                        _contactModelModel.Salutation = s;
-                        
-                        _contactModelModel.Gender = Gender.m;
-                        if (genderValue.Last().Equals(EN))
-                        {
-                            _contactModelModel.Country = Country.EN;
-                        }
-                        else
-                        {
-                            _contactModelModel.Country = Country.DE;
-                        }
-                    }
-                    else
-                    {
-                        _contactModelModel.Salutation = s;
-                        
-                        _contactModelModel.Gender = Gender.f;
-                        if (genderValue.Last().Equals(EN))
-                        {
-                            _contactModelModel.Country = Country.EN;
-                        }
-                        else
-                        {
-                            _contactModelModel.Country = Country.DE;
-                        }
-                    }
-                }
-                else
-                {
-                    _contactModelModel.ListViewItems.Add(s);
-                }
+                _contactModelModel.ListViewItems.Add(s);
             }
 
             SetGender();
@@ -102,7 +66,6 @@ namespace Kontaktsplitter
 
         private void WriteToHistory(ContactModel contact)
         {
-            
             XmlDocument doc = new XmlDocument();
             doc.Load(@"../../XML/Contacts.xml");
             XmlNode contactNode = doc.CreateNode(XmlNodeType.Element, "Contact", null);
@@ -148,19 +111,65 @@ namespace Kontaktsplitter
 
         private void CloseWindowAndRemoveInput()
         {
-            
             _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
             _validateView.ShowDialog();
             _contactModelModel.ListViewItems.Clear();
         }
 
-        private void CheckForlastAndFirstName(List<string> titels, List<string> inputList, Dictionary<string, List<string>> genderDict)
+        private void CheckForlastAndFirstName(List<string> titels, List<string> inputList,
+            Dictionary<string, List<string>> genderDict, List<string> tmpList)
         {
             if (titels.Contains(inputList.Last()))
             {
                 //Errorhandler
             }
-            else if (inputList.Count == 2 && !titels.Contains(inputList.First()) && !genderDict.ContainsKey(inputList.First()))
+            
+            foreach (string s in tmpList)
+            {
+                if (titels.Contains(s))
+                {
+                    _contactModelModel.Title += s + " ";
+                    inputList.Remove(s);
+                }
+                else if (genderDict.ContainsKey(s))
+                {
+                    genderDict.TryGetValue(s, out var genderValue);
+                    if (genderValue != null && genderValue.First().Equals(MALE))
+                    {
+                        _contactModelModel.Salutation = s;
+
+                        _contactModelModel.Gender = Gender.m;
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
+                    }
+                    else
+                    {
+                        _contactModelModel.Salutation = s;
+
+                        _contactModelModel.Gender = Gender.f;
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
+                    }
+
+                    inputList.Remove(s);
+                }
+            }
+
+
+            if (inputList.Count == 2 && !titels.Contains(inputList.First()) &&
+                !genderDict.ContainsKey(inputList.First()))
             {
                 _contactModelModel.FirstName = inputList.First();
                 _contactModelModel.LastName = inputList.Last();
@@ -173,6 +182,31 @@ namespace Kontaktsplitter
                 inputList.RemoveAt(inputList.Count - 2);
                 inputList.RemoveAt(inputList.Count - 1);
             }
+            //else if (inputList.Count>2)
+            //{
+            //    var templist = inputList;
+            //    foreach (string titel in titels)
+            //    {
+            //        templist.RemoveAll(p => p.Equals(titel));
+            //    }
+
+            //    if (genderDict.ContainsKey(templist.First()))
+            //    {
+            //        _contactModelModel.Salutation = templist.First(); 
+            //        templist.Remove(inputList.First());
+            //    }
+
+            //    if (templist.Count == 2)
+            //    {
+            //        _contactModelModel.FirstName = templist.First();
+            //        _contactModelModel.LastName = templist.Last();
+            //    }
+
+            //    if (templist.Count==0)
+            //    {
+            //        inputList.Clear();
+            //    }
+            //}
             else if (inputList.Count == 1)
             {
                 //Error
@@ -190,7 +224,8 @@ namespace Kontaktsplitter
             {
                 case Gender.m:
                 {
-                    _contactModelModel.LetterSalutation = _contactModelModel.Country == Country.EN ? "Dear Mr" : "Sehr geeherter Herr";
+                    _contactModelModel.LetterSalutation =
+                        _contactModelModel.Country == Country.EN ? "Dear Mr" : "Sehr geeherter Herr";
                     break;
                 }
                 case Gender.f:
@@ -203,7 +238,8 @@ namespace Kontaktsplitter
                     {
                         _contactModelModel.LetterSalutation = "Sehr geeherte Frau";
                     }
-                        break;
+
+                    break;
                 }
                 case Gender.x:
                 {
@@ -215,7 +251,8 @@ namespace Kontaktsplitter
                     {
                         _contactModelModel.LetterSalutation = "Sehr geeherte Damen und Herren";
                     }
-                        break;
+
+                    break;
                 }
             }
         }

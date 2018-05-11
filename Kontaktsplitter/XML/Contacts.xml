@@ -64,4 +64,15 @@
     <LastName>Mueller</LastName>
     <Country>EN</Country>
   </Contact>
+  <Contact>
+    <Input>Herr Olaf herden</Input>
+    <Title>
+    </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Olaf</FirstName>
+    <LastName>herden</LastName>
+    <Country>DE</Country>
+  </Contact>
 </Contacts>
