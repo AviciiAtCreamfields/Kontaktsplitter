@@ -24,7 +24,7 @@
         <Button HorizontalAlignment="Left" Margin="49.5,158,0,0" Name="OKButton" Content="OK"  VerticalAlignment="Top" Width="74" RenderTransformOrigin="0.462,1.917" Grid.Column="1" Height="23" Click="OKButton_Click">
         </Button>
         <TextBox Name="TextBox"  HorizontalAlignment="Left"  Height="23" Margin="97,158,0,0" TextWrapping="Wrap" Text="{Binding Input}" VerticalAlignment="Top" Width="282"/>
-        <Button Content="Titel hinzufügen" HorizontalAlignment="Left" Margin="97,38,0,0" VerticalAlignment="Top" Width="143" Grid.Row="1" Height="28"/>
+        <Button Content="Titel hinzufügen" HorizontalAlignment="Left" Margin="97,38,0,0" VerticalAlignment="Top" Width="143" Grid.Row="1" Height="28" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="97,124,0,0" TextWrapping="Wrap" Text="Kontakt:" VerticalAlignment="Top" Width="82"/>
     </Grid>
 </Window>

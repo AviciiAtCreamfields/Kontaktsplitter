@@ -32,7 +32,7 @@ namespace Kontaktsplitter
             _controller.ParsString();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             _controller.addTitle();
         }

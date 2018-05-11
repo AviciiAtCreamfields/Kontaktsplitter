@@ -14,8 +14,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Grid.Column="2" >
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,0.5" Grid.RowSpan="2" >
             <TextBlock HorizontalAlignment="Left" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"/>
             <StackPanel Orientation="Horizontal" >
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="title_textbox" TextChanged="title_textbox_TextChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
@@ -23,11 +24,10 @@
             </StackPanel>
         </StackPanel>
         <TextBlock Height="50" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"><Run Text="Title hinzuf"/><Run Text="ügen"/></TextBlock>
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <ScrollViewer VerticalAlignment="Top">
-                <ListView Name="XML_List"></ListView>
-            </ScrollViewer>
-            <Button Content="Löschen" Click="Button_Click_1"/>
-        </StackPanel>
+
+        <ScrollViewer  Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch"  Margin="10">
+            <ListBox Name="XML_List" ItemsSource="{Binding TitlesList, UpdateSourceTrigger=PropertyChanged}" ></ListBox>
+        </ScrollViewer>
+        <Button Content="Löschen" Click="Button_Click_1" VerticalAlignment="Top" Margin="10" Grid.Row="2"/>
     </Grid>
 </Window>

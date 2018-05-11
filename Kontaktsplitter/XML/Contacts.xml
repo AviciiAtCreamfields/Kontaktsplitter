@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Contacts>
+  <Contact>
+    <Input />
+    <Title />
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Nils</FirstName>
+    <LastName>Lohmiller</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input />
+    <Title />
+    <Salutation />
+    <LetterSalutation />
+    <Gender />
+    <FirstName />
+    <LastName />
+    <Country />
+  </Contact>
+  <Contact>
+    <Input>
+    </Input>
+    <Title>
+    </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Daniel</FirstName>
+    <LastName>Schaber</LastName>
+    <Country>DE</Country>
+  </Contact>
+</Contacts>

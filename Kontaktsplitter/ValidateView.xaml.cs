@@ -23,6 +23,7 @@ namespace Kontaktsplitter
         private Point startPoint;
         private ContactModel context;
         private Controller _controller;
+        private string _Contact;
 
 
         public ValidateView(Controller controller, ContactModel cont)
@@ -57,11 +58,11 @@ namespace Kontaktsplitter
                 if (listViewItem!=null)
                 {
                     // Find the data behind the ListViewItem
-                    string contact = (string)listView.ItemContainerGenerator.
+                     _Contact = (string)listView.ItemContainerGenerator.
                         ItemFromContainer(listViewItem);
 
                     // Initialize the drag & drop operation
-                    DataObject dragData = new DataObject(DataFormats.Text, contact);
+                    DataObject dragData = new DataObject(DataFormats.Text, _Contact);
                     DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
                 }
                
@@ -118,5 +119,13 @@ namespace Kontaktsplitter
             _controller.TEST();
 
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var cont = (ContactModel) DataContext;
+            cont.ListViewItems.Remove(_Contact);
+            ListView.Items.Refresh();
+        }
+
     }
 }
