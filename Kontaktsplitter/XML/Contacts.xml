@@ -1,28 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Contacts>
-  <Contact>
-    <Input />
-    <Title />
-    <Salutation>Herr</Salutation>
-    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
-    <Gender>m</Gender>
-    <FirstName>Nils</FirstName>
-    <LastName>Lohmiller</LastName>
-    <Country>DE</Country>
-  </Contact>
-  <Contact>
-    <Input />
-    <Title />
-    <Salutation />
-    <LetterSalutation />
-    <Gender />
-    <FirstName />
-    <LastName />
-    <Country />
-  </Contact>
   <Contact>
     <Input>
     </Input>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>
+    </LetterSalutation>
+    <Title>
+    </Title>
+    <Gender>
+    </Gender>
+    <FirstName>
+    </FirstName>
+    <LastName>
+    </LastName>
+    <Country>
+    </Country>
+  </Contact>
+  <Contact>
+    <Input>Hallo Robin Schaber</Input>
+    <Title>
+    </Title>
+    <Salutation>Hallo</Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
+    <Gender>x</Gender>
+    <FirstName>Robin</FirstName>
+    <LastName>Schaber</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Daniel Schaber</Input>
     <Title>
     </Title>
     <Salutation>Herr</Salutation>
@@ -30,6 +38,18 @@
     <Gender>m</Gender>
     <FirstName>Daniel</FirstName>
     <LastName>Schaber</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Hallo Herr</Input>
+    <Title>
+    </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
+    <Gender>x</Gender>
+    <FirstName>Hallo</FirstName>
+    <LastName>Herr</LastName>
     <Country>DE</Country>
   </Contact>
 </Contacts>

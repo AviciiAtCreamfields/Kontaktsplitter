@@ -15,6 +15,7 @@ namespace Kontaktsplitter
         private readonly ContactModel _contactModelModel;
         private readonly InputView _inputView;
         private readonly AddTitleView _addTitleView;
+        private ValidateView _validateView;
         private const string MALE = "Male";
 
         public Controller()
@@ -120,12 +121,14 @@ namespace Kontaktsplitter
 
             doc.DocumentElement.AppendChild(contactNode);
             doc.Save(@"../../XML/Contacts.xml");
+            _contactModelModel.Input = string.Empty;
+            _validateView.Close();
         }
 
         private void CloseWindowAndRemoveInput()
         {
-            _contactModelModel.Input = string.Empty;
-            var _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
+            
+            _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
             _validateView.ShowDialog();
             _contactModelModel.ListViewItems.Clear();
         }
