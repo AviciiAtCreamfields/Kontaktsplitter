@@ -16,6 +16,7 @@ namespace Kontaktsplitter
         private readonly InputView _inputView;
         private readonly AddTitleView _addTitleView;
         private ValidateView _validateView;
+        private string EN="EN";
         private const string MALE = "Male";
 
         public Controller()
@@ -39,6 +40,10 @@ namespace Kontaktsplitter
 
         public void ParsString()
         {
+            if (_contactModelModel.Input.Any(char.IsDigit))
+            {
+                // TODO Fehler
+            }
             var inputList = _contactModelModel.Input.Split(' ').ToList();
             inputList.RemoveAll(p => p.Equals(""));
             init(out var titels, out var genderDict);
@@ -56,17 +61,33 @@ namespace Kontaktsplitter
                 else if (genderDict.ContainsKey(s))
                 {
                     genderDict.TryGetValue(s, out var genderValue);
-                    if (genderValue != null && genderValue.Equals(MALE))
+                    if (genderValue != null && genderValue.First().Equals(MALE))
                     {
                         _contactModelModel.Salutation = s;
                         
                         _contactModelModel.Gender = Gender.m;
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
                     }
                     else
                     {
                         _contactModelModel.Salutation = s;
                         
                         _contactModelModel.Gender = Gender.f;
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
                     }
                 }
                 else
@@ -133,7 +154,7 @@ namespace Kontaktsplitter
             _contactModelModel.ListViewItems.Clear();
         }
 
-        private void CheckForlastAndFirstName(List<string> titels, List<string> inputList, Dictionary<string, string> genderDict)
+        private void CheckForlastAndFirstName(List<string> titels, List<string> inputList, Dictionary<string, List<string>> genderDict)
         {
             if (titels.Contains(inputList.Last()))
             {
@@ -169,23 +190,37 @@ namespace Kontaktsplitter
             {
                 case Gender.m:
                 {
-                    _contactModelModel.LetterSalutation = "Sehr geeherter Herr";
+                    _contactModelModel.LetterSalutation = _contactModelModel.Country == Country.EN ? "Dear Mr" : "Sehr geeherter Herr";
                     break;
                 }
                 case Gender.f:
                 {
-                    _contactModelModel.LetterSalutation = "Sehr geeherte Frau";
-                    break;
+                    if (_contactModelModel.Country == Country.EN)
+                    {
+                        _contactModelModel.LetterSalutation = "Dear Mrs";
+                    }
+                    else
+                    {
+                        _contactModelModel.LetterSalutation = "Sehr geeherte Frau";
+                    }
+                        break;
                 }
                 case Gender.x:
                 {
-                    _contactModelModel.LetterSalutation = "Sehr geeherte Damen und Herren";
-                    break;
+                    if (_contactModelModel.Country == Country.EN)
+                    {
+                        _contactModelModel.LetterSalutation = "Dear Sirs";
+                    }
+                    else
+                    {
+                        _contactModelModel.LetterSalutation = "Sehr geeherte Damen und Herren";
+                    }
+                        break;
                 }
             }
         }
 
-        private void init(out List<string> titels, out Dictionary<string, string> genderDict)
+        private void init(out List<string> titels, out Dictionary<string, List<string>> genderDict)
         {
             titels = new List<string>();
             XmlDocument titleDoc = new XmlDocument();
@@ -195,11 +230,17 @@ namespace Kontaktsplitter
             XmlDocument genderDoc = new XmlDocument();
             genderDoc.Load(@"../../XML/Gender.xml");
             XmlElement genderRoot = genderDoc.DocumentElement;
-            genderDict = new Dictionary<string, string>();
+            genderDict = new Dictionary<string, List<string>>();
             if (genderRoot != null)
                 foreach (XmlNode node in genderRoot)
                 {
-                    if (node.Attributes != null) genderDict.Add(node.InnerText, node.Attributes["ID"].InnerText);
+                    var list = new List<string>();
+                    if (node.Attributes != null)
+                    {
+                        list.Add(node.Attributes["ID"].InnerText);
+                        list.Add(node.Attributes["Country"].InnerText);
+                        if (node.Attributes != null) genderDict.Add(node.InnerText, list);
+                    }
                 }
 
             foreach (XmlNode childNode in root.ChildNodes)

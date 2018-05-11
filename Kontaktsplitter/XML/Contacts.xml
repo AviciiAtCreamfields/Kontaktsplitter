@@ -52,4 +52,16 @@
     <LastName>Herr</LastName>
     <Country>DE</Country>
   </Contact>
+  <Contact>
+    <Input>Mrs. Mueller</Input>
+    <Title>
+    </Title>
+    <Salutation>Mrs.</Salutation>
+    <LetterSalutation>Dear Mrs</LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>
+    </FirstName>
+    <LastName>Mueller</LastName>
+    <Country>EN</Country>
+  </Contact>
 </Contacts>

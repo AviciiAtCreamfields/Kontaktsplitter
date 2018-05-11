@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GenderThings>
-  <Gender ID="Male">Herr</Gender>
-  <Gender ID="Male">Hr.</Gender>
-  <Gender ID="Male">Mr</Gender>
-  <Gender ID="Male">Mr.</Gender>
-  <Gender ID="Female">Frau</Gender>
-  <Gender ID="Female">Fr.</Gender>
-  <Gender ID="Female">Ms</Gender>
-  <Gender ID="Female">Ms.</Gender>
-  <Gender ID="Female">Mrs</Gender>
-  <Gender ID="Female">Mrs.</Gender>
+  <Gender ID="Male" Country="DE">Herr</Gender>
+  <Gender ID="Male" Country="DE">Hr.</Gender>
+  <Gender ID="Male" Country="EN">Mr</Gender>
+  <Gender ID="Male" Country="EN">Mr.</Gender>
+  <Gender ID="Female" Country="DE">Frau</Gender>
+  <Gender ID="Female" Country="DE">Fr.</Gender>
+  <Gender ID="Female" Country="EN">Ms</Gender>
+  <Gender ID="Female" Country="EN">Ms.</Gender>
+  <Gender ID="Female" Country="EN">Mrs</Gender>
+  <Gender ID="Female" Country="EN">Mrs.</Gender>
 </GenderThings>
