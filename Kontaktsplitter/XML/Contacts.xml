@@ -75,4 +75,35 @@
     <LastName>herden</LastName>
     <Country>DE</Country>
   </Contact>
+  <Contact>
+    <Input>Frau Prof. Dr. Maia Mainz</Input>
+    <Title>Prof. Dr. </Title>
+    <Salutation>Frau</Salutation>
+    <LetterSalutation>Sehr geeherte Frau</LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Maia</FirstName>
+    <LastName>Mainz</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Prof. Dr. Martin Haus</Input>
+    <Title>Dr. Prof. </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
+    <Gender>x</Gender>
+    <FirstName>Martin</FirstName>
+    <LastName>Haus</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Prof. Dr. Martin Pluemicke</Input>
+    <Title>Prof. Dr. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr Prof. Dr. </LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Martin</FirstName>
+    <LastName>Pluemicke</LastName>
+    <Country>DE</Country>
+  </Contact>
 </Contacts>
