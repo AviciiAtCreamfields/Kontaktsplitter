@@ -40,29 +40,148 @@ namespace Kontaktsplitter
 
         public void ParsString()
         {
+            ClearProperties();
             if (_contactModelModel.Input.Any(char.IsDigit))
             {
                 // TODO Fehler
             }
 
+
             var inputList = _contactModelModel.Input.Split(' ').ToList();
-            var inputList2 = _contactModelModel.Input.Split(' ').ToList();
             inputList.RemoveAll(p => p.Equals(""));
-            inputList2.RemoveAll(p => p.Equals(""));
+
             init(out var titels, out var genderDict);
 
-            CheckForlastAndFirstName(titels, inputList, genderDict, inputList2);
+            var input = SetLastAndFirstname(inputList);
 
 
-            //Sting parsen ud auf titel und Anrede überprüfen
-            foreach (string s in inputList)
-            {
-                _contactModelModel.ListViewItems.Add(s);
-            }
+            input = SetGenderSalutationAndCountry(genderDict, input);
+
+
+            input = SetTitle(input, titels);
+
+
+            NotMatchingStrings(input);
 
             SetGender();
             CloseWindowAndRemoveInput();
         }
+
+        private string SetLastAndFirstname(List<string> inputList)
+        {
+//Set LastName and possibly Firstname and delete from input
+            var input = _contactModelModel.Input.Trim();
+            string lastname;
+            if (inputList.Count >= 2 && !input.Contains(","))
+            {
+                lastname = input.Split(' ').Last();
+                _contactModelModel.LastName = lastname;
+                input = input.Replace(lastname, "").Trim();
+            }
+            else if (inputList.Count >= 2 && inputList[inputList.Count - 2].Contains(","))
+            {
+                lastname = inputList[inputList.Count - 2].Replace(",", "");
+                string firstname = inputList[inputList.Count - 1];
+                _contactModelModel.LastName = lastname;
+                _contactModelModel.FirstName = firstname;
+                input = input.Replace(lastname, "");
+                input = input.Replace(firstname, "");
+                input = input.Replace(",", "");
+            }
+
+            return input;
+        }
+
+        private void NotMatchingStrings(string input)
+        {
+// Nicht zu geordente Wörter klassifzieren
+            var unmatchedStrings = input.Split(' ');
+            unmatchedStrings = unmatchedStrings.Where(val => val != "").ToArray();
+            if (unmatchedStrings.Length == 1)
+            {
+                string firstname = unmatchedStrings[0];
+                _contactModelModel.FirstName = firstname;
+                unmatchedStrings = unmatchedStrings.Where(val => val != firstname).ToArray();
+            }
+
+            //Nicht zuordnenbare Strings als Listviewitems erzeugen
+            foreach (string s in unmatchedStrings)
+            {
+                _contactModelModel.ListViewItems.Add(s);
+            }
+        }
+
+        private string SetTitle(string input, List<string> titels)
+        {
+//Titel setzen
+            var test = input.Split(' ');
+            foreach (string item in test.ToList())
+            {
+                if (titels.Contains(item))
+                {
+                    _contactModelModel.Title += item + " ";
+                    input = input.Replace(item, "");
+                }
+            }
+
+            return input;
+        }
+
+        private string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
+        {
+//Anrede, Geschlecht und Land setzen
+            foreach (var item in genderDict)
+            {
+                if (input.Contains(item.Key))
+                {
+                    genderDict.TryGetValue(item.Key, out var genderValue);
+                    if (genderValue != null && genderValue.First().Equals(MALE))
+                    {
+                        _contactModelModel.Salutation = item.Key;
+                        _contactModelModel.Gender = Gender.m;
+
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else if (genderValue.Last().Equals("DE"))
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
+                    }
+                    else
+                    {
+                        _contactModelModel.Salutation = item.Key;
+                        _contactModelModel.Gender = Gender.f;
+
+                        if (genderValue.Last().Equals(EN))
+                        {
+                            _contactModelModel.Country = Country.EN;
+                        }
+                        else
+                        {
+                            _contactModelModel.Country = Country.DE;
+                        }
+                    }
+
+                    input = input.Replace(item.Key, "");
+                }
+            }
+
+            return input;
+        }
+
+        private void ClearProperties()
+        {
+            _contactModelModel.Country = Country.DE; // Default
+            _contactModelModel.FirstName = string.Empty;
+            _contactModelModel.LastName = string.Empty;
+            _contactModelModel.Title = string.Empty;
+            _contactModelModel.Salutation = string.Empty;
+            _contactModelModel.Gender = Gender.x; // Default 
+            _contactModelModel.LetterSalutation = string.Empty;
+        }
+
 
         private void WriteToHistory(ContactModel contact)
         {
@@ -103,7 +222,7 @@ namespace Kontaktsplitter
                 contactNode.AppendChild(xmlNode);
             }
 
-            doc.DocumentElement.AppendChild(contactNode);
+            doc.DocumentElement?.AppendChild(contactNode);
             doc.Save(@"../../XML/Contacts.xml");
             _contactModelModel.Input = string.Empty;
             _validateView.Close();
@@ -111,111 +230,9 @@ namespace Kontaktsplitter
 
         private void CloseWindowAndRemoveInput()
         {
-            _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
+            _validateView = new ValidateView(this, _contactModelModel) { DataContext = _contactModelModel };
             _validateView.ShowDialog();
             _contactModelModel.ListViewItems.Clear();
-        }
-
-        private void CheckForlastAndFirstName(List<string> titels, List<string> inputList,
-            Dictionary<string, List<string>> genderDict, List<string> tmpList)
-        {
-            if (titels.Contains(inputList.Last()))
-            {
-                //Errorhandler
-            }
-            
-            foreach (string s in tmpList)
-            {
-                if (titels.Contains(s))
-                {
-                    _contactModelModel.Title += s + " ";
-                    inputList.Remove(s);
-                }
-                else if (genderDict.ContainsKey(s))
-                {
-                    genderDict.TryGetValue(s, out var genderValue);
-                    if (genderValue != null && genderValue.First().Equals(MALE))
-                    {
-                        _contactModelModel.Salutation = s;
-
-                        _contactModelModel.Gender = Gender.m;
-                        if (genderValue.Last().Equals(EN))
-                        {
-                            _contactModelModel.Country = Country.EN;
-                        }
-                        else
-                        {
-                            _contactModelModel.Country = Country.DE;
-                        }
-                    }
-                    else
-                    {
-                        _contactModelModel.Salutation = s;
-
-                        _contactModelModel.Gender = Gender.f;
-                        if (genderValue.Last().Equals(EN))
-                        {
-                            _contactModelModel.Country = Country.EN;
-                        }
-                        else
-                        {
-                            _contactModelModel.Country = Country.DE;
-                        }
-                    }
-
-                    inputList.Remove(s);
-                }
-            }
-
-
-            if (inputList.Count == 2 && !titels.Contains(inputList.First()) &&
-                !genderDict.ContainsKey(inputList.First()))
-            {
-                _contactModelModel.FirstName = inputList.First();
-                _contactModelModel.LastName = inputList.Last();
-                inputList.Clear();
-            }
-            else if (inputList.Count >= 2 && inputList[inputList.Count - 2].Contains(","))
-            {
-                _contactModelModel.LastName = inputList[inputList.Count - 2].Replace(",", "");
-                _contactModelModel.FirstName = inputList[inputList.Count - 1];
-                inputList.RemoveAt(inputList.Count - 2);
-                inputList.RemoveAt(inputList.Count - 1);
-            }
-            //else if (inputList.Count>2)
-            //{
-            //    var templist = inputList;
-            //    foreach (string titel in titels)
-            //    {
-            //        templist.RemoveAll(p => p.Equals(titel));
-            //    }
-
-            //    if (genderDict.ContainsKey(templist.First()))
-            //    {
-            //        _contactModelModel.Salutation = templist.First(); 
-            //        templist.Remove(inputList.First());
-            //    }
-
-            //    if (templist.Count == 2)
-            //    {
-            //        _contactModelModel.FirstName = templist.First();
-            //        _contactModelModel.LastName = templist.Last();
-            //    }
-
-            //    if (templist.Count==0)
-            //    {
-            //        inputList.Clear();
-            //    }
-            //}
-            else if (inputList.Count == 1)
-            {
-                //Error
-            }
-            else
-            {
-                _contactModelModel.LastName = inputList.Last();
-                inputList.RemoveAt(inputList.Count - 1);
-            }
         }
 
         private void SetGender()
@@ -223,37 +240,37 @@ namespace Kontaktsplitter
             switch (_contactModelModel.Gender)
             {
                 case Gender.m:
-                {
-                    _contactModelModel.LetterSalutation =
-                        _contactModelModel.Country == Country.EN ? "Dear Mr" : "Sehr geeherter Herr";
-                    break;
-                }
+                    {
+                        _contactModelModel.LetterSalutation =
+                            _contactModelModel.Country == Country.EN ? "Dear Mr "+_contactModelModel.Title : "Sehr geeherter Herr " + _contactModelModel.Title;
+                        break;
+                    }
                 case Gender.f:
-                {
-                    if (_contactModelModel.Country == Country.EN)
                     {
-                        _contactModelModel.LetterSalutation = "Dear Mrs";
-                    }
-                    else
-                    {
-                        _contactModelModel.LetterSalutation = "Sehr geeherte Frau";
-                    }
+                        if (_contactModelModel.Country == Country.EN)
+                        {
+                            _contactModelModel.LetterSalutation = "Dear Mrs " + _contactModelModel.Title;
+                        }
+                        else
+                        {
+                            _contactModelModel.LetterSalutation = "Sehr geeherte Frau " + _contactModelModel.Title;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 case Gender.x:
-                {
-                    if (_contactModelModel.Country == Country.EN)
                     {
-                        _contactModelModel.LetterSalutation = "Dear Sirs";
-                    }
-                    else
-                    {
-                        _contactModelModel.LetterSalutation = "Sehr geeherte Damen und Herren";
-                    }
+                        if (_contactModelModel.Country == Country.EN)
+                        {
+                            _contactModelModel.LetterSalutation = "Dear Sirs " + _contactModelModel.Title;
+                        }
+                        else
+                        {
+                            _contactModelModel.LetterSalutation = "Sehr geeherte Damen und Herren " + _contactModelModel.Title;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
 
