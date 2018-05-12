@@ -68,6 +68,7 @@ namespace Kontaktsplitter
                 _contactModelModel.FirstName = firstname;
                 input = input.Replace(lastname, "");
                 input = input.Replace(firstname, "");
+                input = input.Replace(",", "");
             }
 
 
