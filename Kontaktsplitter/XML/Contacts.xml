@@ -19,60 +19,68 @@
     </Country>
   </Contact>
   <Contact>
-    <Input>Hallo Robin Schaber</Input>
-    <Title>
-    </Title>
-    <Salutation>Hallo</Salutation>
-    <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
-    <Gender>x</Gender>
+    <Input>Herr Dr. rer. nat. Robin Schmidt</Input>
+    <Title>Dr. rer. nat.</Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
     <FirstName>Robin</FirstName>
-    <LastName>Schaber</LastName>
+    <LastName>Schmidt</LastName>
     <Country>DE</Country>
   </Contact>
   <Contact>
-    <Input>Herr Daniel Schaber</Input>
+    <Input>Mrs. Marie Test</Input>
+    <Title>
+    </Title>
+    <Salutation>Mrs.</Salutation>
+    <LetterSalutation>Dear Mrs</LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Marie</FirstName>
+    <LastName>Test</LastName>
+    <Country>EN</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Schmidt-Müller</Input>
     <Title>
     </Title>
     <Salutation>Herr</Salutation>
     <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
     <Gender>m</Gender>
-    <FirstName>Daniel</FirstName>
-    <LastName>Schaber</LastName>
+    <FirstName>
+    </FirstName>
+    <LastName>Schmidt-Müller</LastName>
     <Country>DE</Country>
   </Contact>
   <Contact>
-    <Input>Hallo Herr</Input>
+    <Input>Herr Dr. rer. nat. Robin Schmidt</Input>
+    <Title>Dr. rer. nat. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin</FirstName>
+    <LastName>Schmidt</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr. rer. nat. Robin Marc Schmidt</Input>
+    <Title>Dr. rer. nat. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin Marc</FirstName>
+    <LastName>Schmidt</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Daniel Schaber</Input>
     <Title>
     </Title>
     <Salutation>
     </Salutation>
     <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
     <Gender>x</Gender>
-    <FirstName>Hallo</FirstName>
-    <LastName>Herr</LastName>
-    <Country>DE</Country>
-  </Contact>
-  <Contact>
-    <Input>Mrs. Mueller</Input>
-    <Title>
-    </Title>
-    <Salutation>Mrs.</Salutation>
-    <LetterSalutation>Dear Mrs</LetterSalutation>
-    <Gender>f</Gender>
-    <FirstName>
-    </FirstName>
-    <LastName>Mueller</LastName>
-    <Country>EN</Country>
-  </Contact>
-  <Contact>
-    <Input>Herr Olaf herden</Input>
-    <Title>
-    </Title>
-    <Salutation>Herr</Salutation>
-    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
-    <Gender>m</Gender>
-    <FirstName>Olaf</FirstName>
-    <LastName>herden</LastName>
+    <FirstName>Daniel</FirstName>
+    <LastName>Schaber</LastName>
     <Country>DE</Country>
   </Contact>
 </Contacts>
