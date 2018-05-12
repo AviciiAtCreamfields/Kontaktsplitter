@@ -1,13 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Contacts>
-	<Contact>
-		<Input> </Input>
-		<Salutation> </Salutation>
-		<LetterSalutation> </LetterSalutation>
-		<Title> </Title>
-		<Gender> </Gender>
-		<FirstName> </FirstName>
-		<LastName> </LastName>
-		<Country> </Country>
-	</Contact>
+  <Contact>
+    <Input>
+    </Input>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>
+    </LetterSalutation>
+    <Title>
+    </Title>
+    <Gender>
+    </Gender>
+    <FirstName>
+    </FirstName>
+    <LastName>
+    </LastName>
+    <Country>
+    </Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr. rer. nat. Robin Schmidt</Input>
+    <Title>Dr. rer. nat.</Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin</FirstName>
+    <LastName>Schmidt</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Mrs. Marie Test</Input>
+    <Title>
+    </Title>
+    <Salutation>Mrs.</Salutation>
+    <LetterSalutation>Dear Mrs</LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Marie</FirstName>
+    <LastName>Test</LastName>
+    <Country>EN</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Schmidt-Müller</Input>
+    <Title>
+    </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>
+    </FirstName>
+    <LastName>Schmidt-Müller</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr. rer. nat. Robin Schmidt</Input>
+    <Title>Dr. rer. nat. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin</FirstName>
+    <LastName>Schmidt</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr. rer. nat. Robin Marc Schmidt</Input>
+    <Title>Dr. rer. nat. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin Marc</FirstName>
+    <LastName>Schmidt</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Daniel Schaber</Input>
+    <Title>
+    </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren</LetterSalutation>
+    <Gender>x</Gender>
+    <FirstName>Daniel</FirstName>
+    <LastName>Schaber</LastName>
+    <Country>DE</Country>
+  </Contact>
 </Contacts>
