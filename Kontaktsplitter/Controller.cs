@@ -52,7 +52,7 @@ namespace Kontaktsplitter
 
             init(out var titels, out var genderDict);
 
-            var input = SetLastAndFirstname(inputList);
+            var input = SetLastAndFirstname(inputList, _contactModelModel.Input.Trim());
 
 
             input = SetGenderSalutationAndCountry(genderDict, input);
@@ -67,10 +67,10 @@ namespace Kontaktsplitter
             CloseWindowAndRemoveInput();
         }
 
-        private string SetLastAndFirstname(List<string> inputList)
+        public string SetLastAndFirstname(List<string> inputList, string input)
         {
-//Set LastName and possibly Firstname and delete from input
-            var input = _contactModelModel.Input.Trim();
+            //Set LastName and possibly Firstname and delete from input
+            
             string lastname;
             if (inputList.Count >= 2 && !input.Contains(","))
             {
@@ -127,7 +127,7 @@ namespace Kontaktsplitter
             return input;
         }
 
-        private string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
+        public string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
         {
 //Anrede, Geschlecht und Land setzen
             foreach (var item in genderDict)
@@ -274,11 +274,11 @@ namespace Kontaktsplitter
             }
         }
 
-        private void init(out List<string> titels, out Dictionary<string, List<string>> genderDict)
+        public void init(out List<string> titels, out Dictionary<string, List<string>> genderDict)
         {
             titels = new List<string>();
             XmlDocument titleDoc = new XmlDocument();
-            titleDoc.Load("Titles.xml");
+            titleDoc.Load(@"../../XML/Titles.xml");
             XmlElement root = titleDoc.DocumentElement;
 
             XmlDocument genderDoc = new XmlDocument();
