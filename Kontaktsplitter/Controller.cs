@@ -92,7 +92,7 @@ namespace Kontaktsplitter
             return input;
         }
 
-        private void NotMatchingStrings(string input)
+        public void NotMatchingStrings(string input)
         {
 // Nicht zu geordente Wörter klassifzieren
             var unmatchedStrings = input.Split(' ');
@@ -111,7 +111,7 @@ namespace Kontaktsplitter
             }
         }
 
-        private string SetTitle(string input, List<string> titels)
+        public string SetTitle(string input, List<string> titels)
         {
 //Titel setzen
             var test = input.Split(' ');
@@ -124,7 +124,7 @@ namespace Kontaktsplitter
                 }
             }
 
-            return input;
+            return input.Trim();
         }
 
         public string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
@@ -168,7 +168,8 @@ namespace Kontaktsplitter
                 }
             }
 
-            return input;
+            
+            return input.Trim();
         }
 
         private void ClearProperties()
