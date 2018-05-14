@@ -307,15 +307,7 @@ namespace Kontaktsplitter
                 if (childNode.Attributes != null) titels.Add(childNode.InnerText);
             }
         }
-
-        private void HandleError()
-        {
-        }
-
-        private void HandleDb()
-        {
-        }
-
+        
         public void addTitle()
         {
             _addTitleView.ShowDialog();
