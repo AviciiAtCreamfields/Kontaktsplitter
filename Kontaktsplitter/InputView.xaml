@@ -26,5 +26,6 @@
         <TextBox Name="TextBox"  HorizontalAlignment="Left"  Height="23" Margin="97,158,0,0" TextWrapping="Wrap" Text="{Binding Input}" VerticalAlignment="Top" Width="282"/>
         <Button Content="Titel hinzufügen" HorizontalAlignment="Left" Margin="97,38,0,0" VerticalAlignment="Top" Width="143" Grid.Row="1" Height="28" Click="Button_Click_1"/>
         <TextBlock HorizontalAlignment="Left" Margin="97,124,0,0" TextWrapping="Wrap" Text="Kontakt:" VerticalAlignment="Top" Width="82"/>
+        <TextBlock HorizontalAlignment="Center" Margin="30" TextWrapping="Wrap" Text="{Binding Error}" VerticalAlignment="Center"  Grid.Row="2" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

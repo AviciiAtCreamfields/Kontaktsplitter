@@ -40,10 +40,14 @@ namespace Kontaktsplitter
 
         public void ParsString()
         {
+            _contactModelModel.Error = string.Empty;
             ClearProperties();
             if (_contactModelModel.Input.Any(char.IsDigit))
             {
                 // TODO Fehler
+
+                _contactModelModel.Error = "Eingabe enthält unerlaubte Zahlen!";
+                return;
             }
 
 

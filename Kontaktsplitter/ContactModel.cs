@@ -111,6 +111,8 @@ namespace Kontaktsplitter
         [XmlIgnore]
         public List<string> _TitlesList = new List<string>();
 
+        private string _Error;
+
         public List<string> TitlesList
         {
             get => _TitlesList;
@@ -118,6 +120,15 @@ namespace Kontaktsplitter
             {
                 _TitlesList = value;
                 OnPropertyChanged("TitlesList");
+            }
+        }
+
+        public string Error {
+            get => _Error;
+            set
+            {
+                _Error = value;
+                OnPropertyChanged("Error");
             }
         }
 
