@@ -38,7 +38,7 @@
         
         <StackPanel Grid.Row="2" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Geschlecht" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Name="Gender" LostFocus="Anrede_OnLostFocus" Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Gender,  UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+            <ComboBox Name="Gender" Height="23" Margin="10" Text="{Binding Gender,  UpdateSourceTrigger=PropertyChanged}" SelectionChanged="Gender_SelectionChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top"  Grid.RowSpan="2"/>

@@ -144,11 +144,14 @@ namespace Kontaktsplitter
             {
                 _controller.ReloadInputTitelbox();
             }
-            else
-            {
-                _controller.ReloadInput();
-            }
             
+            
+        }
+
+        private void Gender_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            context.Gender = (Gender) Gender.SelectedItem;
+            _controller.ReloadInput();
         }
     }
 }

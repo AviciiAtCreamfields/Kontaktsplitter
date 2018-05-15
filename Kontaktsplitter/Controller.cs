@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
@@ -236,6 +237,8 @@ namespace Kontaktsplitter
         private void CloseWindowAndRemoveInput()
         {
             _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
+            _validateView.Gender.ItemsSource = Enum.GetValues(typeof(Gender));
+            _validateView.Gender.SelectedItem = _contactModelModel.Gender;
             _validateView.ShowDialog();
             _contactModelModel.ListViewItems.Clear();
         }
