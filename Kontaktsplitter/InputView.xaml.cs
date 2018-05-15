@@ -36,5 +36,17 @@ namespace Kontaktsplitter
         {
             _controller.addTitle();
         }
+
+       
+
+        private void TextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var cont = (ContactModel) DataContext;
+                cont.Input = this.TextBox.Text;
+                _controller.ParsString();
+            }
+        }
     }
 }

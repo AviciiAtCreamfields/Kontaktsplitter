@@ -23,26 +23,26 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Anrede" VerticalAlignment="Top" />
-            <TextBox Drop="UIElement_OnDrop" AllowDrop="True" DragEnter="UIElement_OnDragEnter" Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"  TextChanged="TextBox_TextChanged"/>
+            <TextBox Drop="UIElement_OnDrop" LostFocus="Anrede_OnLostFocus" AllowDrop="True" DragEnter="UIElement_OnDragEnter" Name="Anrede" Height="30" Margin="10" TextWrapping="Wrap" Text="{Binding Salutation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"  TextChanged="TextBox_TextChanged"/>
 
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Briefanrede" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding LetterSalutation}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="Brief"  Height="30" Margin="10" TextWrapping="Wrap" Text="{Binding LetterSalutation, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Titel" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="TitleBox" LostFocus="Anrede_OnLostFocus"  Height="23" Margin="10" TextWrapping="Wrap"  Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
         </StackPanel>
         
         <StackPanel Grid.Row="2" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Geschlecht" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Name="Gender"  Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Gender}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+            <TextBox Name="Gender" LostFocus="Anrede_OnLostFocus" Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding Gender,  UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top"  Grid.RowSpan="2"/>
-            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding FirstName}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
+            <TextBox Height="23" Margin="10" TextWrapping="Wrap" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2">
             <TextBlock HorizontalAlignment="Left" Margin="10" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top"  Grid.RowSpan="2"/>

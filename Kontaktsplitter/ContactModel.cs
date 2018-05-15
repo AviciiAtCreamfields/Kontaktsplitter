@@ -142,7 +142,7 @@ namespace Kontaktsplitter
 
 
     public enum Country{DE,EN}
-    public enum Gender {x,f,m}
+    public enum Gender {x,f,m,KeineAngabe}
 
 
 }

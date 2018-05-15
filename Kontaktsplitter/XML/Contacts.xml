@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Contacts>
   <Contact>
     <Input>
@@ -104,6 +104,16 @@
     <Gender>m</Gender>
     <FirstName>Martin</FirstName>
     <LastName>Pluemicke</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Robin Riady</Input>
+    <Title>Prof.</Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr Prof.</LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Robin</FirstName>
+    <LastName>Riady</LastName>
     <Country>DE</Country>
   </Contact>
 </Contacts>

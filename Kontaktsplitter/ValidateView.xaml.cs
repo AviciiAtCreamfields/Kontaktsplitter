@@ -122,10 +122,33 @@ namespace Kontaktsplitter
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var cont = (ContactModel) DataContext;
-            cont.ListViewItems.Remove(_Contact);
-            ListView.Items.Refresh();
+            
+                var cont = (ContactModel)DataContext;
+                cont.ListViewItems.Remove(_Contact);
+
+                ;
+                ListView.Items.Refresh();
+            
+            
+            
         }
 
+        private void Anrede_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            var erg = (TextBox) sender;
+            if (erg.Name == "Anrede")
+            {
+                _controller.ReloadInputAnrede();
+            }
+            else if(erg.Name == "TitleBox")
+            {
+                _controller.ReloadInputTitelbox();
+            }
+            else
+            {
+                _controller.ReloadInput();
+            }
+            
+        }
     }
 }
