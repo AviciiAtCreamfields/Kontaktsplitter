@@ -30,7 +30,7 @@ namespace Kontaktsplitter
             _inputView.Show();
         }
 
-        public void TEST()
+        public void Save()
         {
             WriteToHistory(_contactModelModel);
         }
@@ -63,8 +63,7 @@ namespace Kontaktsplitter
                 _contactModelModel.Error = "Keine Eingabe Vorhanden";
                 return;
             }
-
-
+            
             var inputList = _contactModelModel.Input.Split(' ').ToList();
             inputList.RemoveAll(p => p.Equals(""));
             if (inputList.Count == 1)
@@ -192,7 +191,7 @@ namespace Kontaktsplitter
         }
 
 
-        private void WriteToHistory(ContactModel contact)
+        public void WriteToHistory(ContactModel contact)
         {
             var doc = new XmlDocument();
             doc.Load(@"../../XML/Contacts.xml");

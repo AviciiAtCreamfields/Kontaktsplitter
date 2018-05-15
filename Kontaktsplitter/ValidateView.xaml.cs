@@ -116,7 +116,7 @@ namespace Kontaktsplitter
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _controller.TEST();
+            _controller.Save();
 
         }
 
