@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KontaktsplitterTests
 {
+    // Testet Methoden der Controller Klasse
     [TestClass()]
     public class ControllerTests
     {
