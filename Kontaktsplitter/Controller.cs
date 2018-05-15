@@ -30,12 +30,13 @@ namespace Kontaktsplitter
             _inputView.Show();
         }
 
+        // Datensatz wird nach der manuellen Zuordnung abgespeichert
         public void Save()
         {
             WriteToHistory(_contactModelModel);
         }
 
-
+        // Die eingegebenen Kontaktdaten werden bearbeitet
         public void ParsString()
         {
             _contactModelModel.Error = string.Empty;
@@ -90,16 +91,15 @@ namespace Kontaktsplitter
             CloseWindowAndRemoveInput();
         }
 
+        //Setzt das letzte wort auf den Nachnamen, falls kein Komma enthalten ist. Ansonten wird vor dem Komma als Nachname behandelt und nach dem Komma als Vorname
         public string SetLastAndFirstname(List<string> inputList, string input)
         {
-            //Set LastName and possibly Firstname and delete from input
-
             string lastname;
             if (inputList.Count >= 2 && !input.Contains(","))
             {
                 lastname = input.Split(' ').Last();
                 _contactModelModel.LastName = lastname;
-                input = input.Replace(lastname, "").Trim();
+                input = ReplaceLastOccurence(input, lastname, "").Trim();
             }
             else if (inputList.Count >= 2 && inputList[inputList.Count - 2].Contains(","))
             {
@@ -107,17 +107,33 @@ namespace Kontaktsplitter
                 var firstname = inputList[inputList.Count - 1];
                 _contactModelModel.LastName = lastname;
                 _contactModelModel.FirstName = firstname;
-                input = input.Replace(lastname, "");
-                input = input.Replace(firstname, "");
+                input = ReplaceFirstOccurrence(input, lastname, "").Trim();
+                input = ReplaceLastOccurence(input, firstname, "").Trim();
                 input = input.Replace(",", "");
             }
 
             return input;
         }
 
+        // Ersetzt das erste Vorkommen eines Strings in einem String 
+        public static string ReplaceFirstOccurrence (string Source, string Find, string Replace)
+        {
+            int Place = Source.IndexOf(Find);
+            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+            return result;
+        }
+
+        // Ersetzt das letzte Vorkommen eines Strings in einem String
+        public string ReplaceLastOccurence (string Source, string Find, string Replace)
+        {
+            int Place = Source.LastIndexOf(Find);
+            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+            return result;
+        }
+
+        // Wird am Ende des Parsens aufgerufen, falls nur noch ein Wort übrig handelt es sich um den Vornamen. Ansonten wird für jedes Wort ein Listenitem erstellt, welches manuell zugeordnet werden kann
         public void NotMatchingStrings(string input)
         {
-// Nicht zu geordente Wörter klassifzieren
             var unmatchedStrings = input.Split(' ');
             unmatchedStrings = unmatchedStrings.Where(val => val != "").ToArray();
             if (unmatchedStrings.Length == 1)
@@ -131,9 +147,9 @@ namespace Kontaktsplitter
             foreach (var s in unmatchedStrings) _contactModelModel.ListViewItems.Add(s);
         }
 
+        // Setzt die Titel basierend auf einer Liste von Titel und entfernt diese aus dem String der Wörter, die noch zugeordnet werden müssen
         public string SetTitle(string input, List<string> titels)
         {
-//Titel setzen
             var test = input.Split(' ');
             foreach (var item in test.ToList())
                 if (titels.Contains(item))
@@ -145,9 +161,9 @@ namespace Kontaktsplitter
             return input.Trim();
         }
 
+        // Setzt die Anrede, Geschlecht und das Land basierend auf den Daten aus dem Dictionary. 
         public string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
         {
-//Anrede, Geschlecht und Land setzen
             foreach (var item in genderDict)
                 if (input.Contains(item.Key))
                 {
@@ -179,6 +195,7 @@ namespace Kontaktsplitter
             return input.Trim();
         }
 
+        // Leert alle Properties bzw. setzt diese auf den Defaultwert zurück
         private void ClearProperties()
         {
             _contactModelModel.Country = Country.DE; // Default
@@ -190,7 +207,7 @@ namespace Kontaktsplitter
             _contactModelModel.LetterSalutation = string.Empty;
         }
 
-
+        // Schreibt den derzeitigen Datensatz als XML Knoten in die Contacts.xml
         public void WriteToHistory(ContactModel contact)
         {
             var doc = new XmlDocument();
@@ -233,6 +250,7 @@ namespace Kontaktsplitter
             _validateView.Close();
         }
 
+        // Schließt das Validierungsfenster und entfernt den Input
         private void CloseWindowAndRemoveInput()
         {
             _validateView = new ValidateView(this, _contactModelModel) {DataContext = _contactModelModel};
@@ -242,6 +260,7 @@ namespace Kontaktsplitter
             _contactModelModel.ListViewItems.Clear();
         }
 
+        // Setzt basierend auf dem Geschlecht, welches im Modell hinterlegt ist, die passende Anrede und Briefanrede in der gewünschten Sprache
         private void SetGender()
         {
             switch (_contactModelModel.Gender)
@@ -311,6 +330,7 @@ namespace Kontaktsplitter
             }
         }
 
+        // Lädt die XML Dateien in Listen bzw. Dictionaries, damit diese benutzt werden können
         public void init(out List<string> titels, out Dictionary<string, List<string>> genderDict)
         {
             titels = new List<string>();
@@ -339,16 +359,19 @@ namespace Kontaktsplitter
                     titels.Add(childNode.InnerText);
         }
 
+        // Button click event für das hinzufügen eines Titels. Zeigt die entsprechende Oberfläche an
         public void addTitle()
         {
             _addTitleView.ShowDialog();
         }
 
+        // Ruft die setGender Methode nochmals auf, um den Input der Felder neu zu laden
         public void ReloadInput()
         {
             SetGender();
         }
 
+        // Bei ändern der Anrede werden das Geschlecht und die Briefanrede angepasst
         public void ReloadInputAnrede()
         {
             switch (_contactModelModel.Salutation)
