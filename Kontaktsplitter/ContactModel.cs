@@ -22,6 +22,7 @@ namespace Kontaktsplitter
         private string _firstName;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Eingabe String Property
         public string Input {
             get => _input;
             set
@@ -31,6 +32,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        //Anrede Property
         public string Salutation
         {
             get => _salutation;
@@ -41,6 +44,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        //Generierte Briefanrede
         public string LetterSalutation {
             get => _letterSalutation;
             set
@@ -50,6 +55,7 @@ namespace Kontaktsplitter
             }
         }
 
+        // Titel String Property
         public string Title {
             get => _title;
             set
@@ -59,6 +65,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        // Geschlecht 
         public Gender Gender {
             get => _gender;
             set
@@ -68,7 +76,7 @@ namespace Kontaktsplitter
             }
         }
 
-       
+        //Vorname Property
         public string FirstName {
             get => _firstName;
             set
@@ -78,6 +86,7 @@ namespace Kontaktsplitter
             }
         }
 
+        //Nachname Property
         public string LastName {
             get => _lastName;
             set
@@ -87,6 +96,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        //Laenderkennung um zu erkennen, welche Sprache zu verwenden ist
         public Country Country
         {
             get => _country;
@@ -98,6 +109,8 @@ namespace Kontaktsplitter
 
         }
 
+
+        //Nicht zuordnenbare Elemente, welche die Eingabe enthalten hat
         public List<string> ListViewItems
         {
             get => _listboxItems;
@@ -113,6 +126,8 @@ namespace Kontaktsplitter
 
         private string _Error;
 
+
+        // Liste der Titel die im XML stehen
         public List<string> TitlesList
         {
             get => _TitlesList;
@@ -123,6 +138,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        //Bei fehler Ausgaben steht der Text hier und wird in der Oberflaeche angezeigt
         public string Error {
             get => _Error;
             set
@@ -132,6 +149,8 @@ namespace Kontaktsplitter
             }
         }
 
+
+        //Sobald sich was in den Properties aendert wird die Oberlaeche aktualisiert
         protected void OnPropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -140,8 +159,10 @@ namespace Kontaktsplitter
 
     }
 
-
+    //Moegliche Laender die erkannt werden
     public enum Country{DE,EN}
+
+    //Auswahl der Geschlechterkennung
     public enum Gender {x,f,m,KeineAngabe}
 
 

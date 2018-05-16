@@ -25,25 +25,26 @@ namespace Kontaktsplitter
         private Controller _controller;
         private string _Contact;
 
-
+        //Initialisieren der Validateview
         public ValidateView(Controller controller, ContactModel cont)
         {
             _controller = controller;
-            //DataContext = cont;
             context = cont;
             
             InitializeComponent();
         }
 
+        //Merken der Startposition waehrend des Drag n Drop Vorgangs
         private void ListboxFolder1_OnPreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            // Store the mouse position
+            
             startPoint = e.GetPosition(null);
         }
 
+        //Merken der aktuellen Mausposition waehrend des Drag n Drop Vorgangs
         private void ListboxFolder1_OnPreviewMouseMove(object sender, MouseEventArgs e)
         {
-            // Get the current mouse position
+            
             Point mousePos = e.GetPosition(null);
             Vector diff = startPoint - mousePos;
 
@@ -51,24 +52,24 @@ namespace Kontaktsplitter
                 Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance)
             {
-                // Get the dragged ListViewItem
+                // Holen des zu dragenden Listviewitems
                 ListView listView = sender as ListView;
                 ListViewItem listViewItem =
                     FindAnchestor<ListViewItem>((DependencyObject)e.OriginalSource);
                 if (listViewItem!=null)
                 {
-                    // Find the data behind the ListViewItem
+                    //Finden der Daten die im Listviewitem stehen
                      _Contact = (string)listView.ItemContainerGenerator.
                         ItemFromContainer(listViewItem);
 
-                    // Initialize the drag & drop operation
+                    // Initialisieren des Drag n Drop Vorgangs
                     DataObject dragData = new DataObject(DataFormats.Text, _Contact);
                     DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
                 }
                
             }
         }
-        // Helper to search up the VisualTree
+        // Helper um im Visual Tree zu suchen
         private static T FindAnchestor<T>(DependencyObject current)
             where T : DependencyObject
         {
@@ -84,6 +85,8 @@ namespace Kontaktsplitter
             return null;
         }
 
+
+        //Sobald das Element losgelassen wird auf einer Textbox
         private void UIElement_OnDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
@@ -94,17 +97,12 @@ namespace Kontaktsplitter
                 stringBuilder.Append(" ");
                 stringBuilder.Append(contact);
                 var cont = (ContactModel) this.DataContext;
-                var check = cont.Salutation; /*= stringBuilder.ToString();*/
+                var check = cont.Salutation; 
             }
 
         }
 
-        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        {
-            Debug.WriteLine(e.Property.Name);
-            base.OnPropertyChanged(e);
-        }
-
+        //DragDrop Effect ausloesen
         private void UIElement_OnDragEnter(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(DataFormats.Text) ||
@@ -114,25 +112,25 @@ namespace Kontaktsplitter
             }
         }
 
+        //sobald der Uebernehmen Button geklickt wird, wird die Savem Methode aufgerufen und die Daten persistiert.
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             _controller.Save();
 
         }
 
+        //Sobald sich einer der Werte in einer Textbox aendert werden die anderen Werte angepasst.
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             
                 var cont = (ContactModel)DataContext;
                 cont.ListViewItems.Remove(_Contact);
-
-                ;
+            
                 ListView.Items.Refresh();
-            
-            
             
         }
 
+        //Wenn die NArede oder der Titel geaendert werden muss das geschlecht und die Briefanrede geaendert werden
         private void Anrede_OnLostFocus(object sender, RoutedEventArgs e)
         {
             var erg = (TextBox) sender;
@@ -142,12 +140,13 @@ namespace Kontaktsplitter
             }
             else if(erg.Name == "TitleBox")
             {
-                _controller.ReloadInputTitelbox();
+                _controller.ReloadInput();
             }
             
             
         }
 
+        //Wenn sich die Geschlechtsangabe aendert werden die davon abhaengigen felder veraendert
         private void Gender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             context.Gender = (Gender) Gender.SelectedItem;

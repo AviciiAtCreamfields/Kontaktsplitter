@@ -425,10 +425,5 @@ namespace Kontaktsplitter
                 }
             }
         }
-
-        public void ReloadInputTitelbox()
-        {
-            SetGender();
-        }
     }
 }

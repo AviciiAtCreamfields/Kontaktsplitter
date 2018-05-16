@@ -21,24 +21,29 @@ namespace Kontaktsplitter
     public partial class InputView : Window
     {
         private readonly Controller _controller;
+
+        //Initialisieren der Inputview
         public InputView(Controller cont)
         {
             _controller = cont;
             InitializeComponent();
         }
 
+        //Sobald der OK Button geklickt wird, wird die eingabe geparst in der ParsString methode
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             _controller.ParsString();
         }
 
+
+        //Um Titel hinzu zu fuegen wird eine neue View geoeffnet
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             _controller.addTitle();
         }
 
        
-
+        //Damit die Eingabe auch durch druecken von Enter direkt geparst werden kann wird dieses Event gefeuert, welches dann die ParsString methode aufruft.
         private void TextBox_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

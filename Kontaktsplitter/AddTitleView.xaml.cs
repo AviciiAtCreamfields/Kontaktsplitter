@@ -21,6 +21,8 @@ namespace Kontaktsplitter
         public const string XmlChild = "title";
         public ContactModel datencontext;
 
+
+        //Initialisieren der AddTitleView
         public AddTitleView(ContactModel cont)
         {
             datencontext = cont;
@@ -29,8 +31,10 @@ namespace Kontaktsplitter
         }
 
 
+        //Titel zur XML Datei hinzufuegen, sodass sie persisten vorhanden sind
         public void addTitleToXML(string title)
         {
+
             GetNodeInnertextDoc();
 
             if (datencontext.TitlesList.Contains(title))
@@ -50,6 +54,7 @@ namespace Kontaktsplitter
             XML_List.Items.Refresh();
         }
 
+        //Liste der Titel aus dem XML Dokument herauslesen
         private void GetNodeInnertextDoc()
         {
             XmlDocument doc = new XmlDocument();
@@ -64,20 +69,22 @@ namespace Kontaktsplitter
           
         }
 
-
+        //sobald der Hinzufuegen Button geklickt wird, wird der eingegebene Titel zur XML hinzu gefuegt
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             addTitleToXML(title_textbox.Text);
             title_textbox.Text = "";
         }
 
+
+        //Um leere eingaben zu verhindern, wird der Hinzufuegen Button erst nach der Eingabe freigeschalten
         private void title_textbox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ok_button.IsEnabled = true;
         }
 
     
-
+        //Um Titel zu loeschen, folgt auf den klick des Loeschbuttons ein Event, welches das ausgewaehlte Element loescht
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (XML_List.SelectedItems != null)
