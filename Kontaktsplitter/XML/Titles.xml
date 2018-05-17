@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <titles>
+  <title>Dr.-Ing.</title>
   <title>Dr.</title>
+  <title>Dr</title>
   <title>Prof.</title>
+  <title>Prof</title>
   <title>Doktor</title>
   <title>Professor</title>
-  <title>Dipl. Ing.</title>
-  <title>Dr. rer. nat.</title>
-  <title>Prof. Dr. rer. nat.</title>
-  <title>Dr.-Ing.</title>
-  <title>Dr. h.c. mult.</title>
+  <title>Dipl.</title>
+  <title>Ing.</title>
+  <title>rer.</title>
+  <title>nat.</title>
+  <title>h.c.</title>
+  <title>mult.</title>
+  <title>mult</title>
+  <title>Dipl</title>
+  <title>Ing</title>
+  <title>rer</title>
+  <title>nat</title>
 </titles>

@@ -11,23 +11,18 @@ namespace Kontaktsplitter
     public class Controller
     {
         private const string MALE = "Male";
-        private readonly AddTitleView _addTitleView;
         private readonly ContactModel _contactModelModel;
-        private readonly InputView _inputView;
         private ValidateView _validateView;
         private readonly string EN = "EN";
 
         public Controller()
         {
             _contactModelModel = new ContactModel();
-            _inputView = new InputView(this);
-            _addTitleView = new AddTitleView(_contactModelModel);
+            var inputView = new InputView(this);
 
+            inputView.DataContext = _contactModelModel;
 
-            _inputView.DataContext = _contactModelModel;
-            _addTitleView.DataContext = _contactModelModel;
-
-            _inputView.Show();
+            inputView.Show();
         }
 
         // Datensatz wird nach der manuellen Zuordnung abgespeichert
@@ -116,7 +111,7 @@ namespace Kontaktsplitter
         }
 
         // Ersetzt das erste Vorkommen eines Strings in einem String 
-        public static string ReplaceFirstOccurrence (string Source, string Find, string Replace)
+        public string ReplaceFirstOccurrence (string Source, string Find, string Replace)
         {
             int Place = Source.IndexOf(Find);
             string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
@@ -126,8 +121,8 @@ namespace Kontaktsplitter
         // Ersetzt das letzte Vorkommen eines Strings in einem String
         public string ReplaceLastOccurence (string Source, string Find, string Replace)
         {
-            int Place = Source.LastIndexOf(Find);
-            string result = Source.Remove(Place, Find.Length).Insert(Place, Replace);
+            int place = Source.LastIndexOf(Find);
+            string result = Source.Remove(place, Find.Length).Insert(place, Replace);
             return result;
         }
 
@@ -150,12 +145,12 @@ namespace Kontaktsplitter
         // Setzt die Titel basierend auf einer Liste von Titel und entfernt diese aus dem String der Wörter, die noch zugeordnet werden müssen
         public string SetTitle(string input, List<string> titels)
         {
-            var test = input.Split(' ');
-            foreach (var item in test.ToList())
+            var inputList = input.Split(' ');
+            foreach (var item in inputList.ToList())
                 if (titels.Contains(item))
                 {
                     _contactModelModel.Title += item + " ";
-                    input = input.Replace(item, "");
+                    input = ReplaceFirstOccurrence(input, item, "");
                 }
 
             return input.Trim();
@@ -164,8 +159,9 @@ namespace Kontaktsplitter
         // Setzt die Anrede, Geschlecht und das Land basierend auf den Daten aus dem Dictionary. 
         public string SetGenderSalutationAndCountry(Dictionary<string, List<string>> genderDict, string input)
         {
+            var tempsplit = input.Split(' ');
             foreach (var item in genderDict)
-                if (input.Contains(item.Key))
+                if (tempsplit.Contains(item.Key))
                 {
                     genderDict.TryGetValue(item.Key, out var genderValue);
                     if (genderValue != null && genderValue.First().Equals(MALE))
@@ -188,7 +184,8 @@ namespace Kontaktsplitter
                             _contactModelModel.Country = Country.DE;
                     }
 
-                    input = input.Replace(item.Key, "");
+                    
+                    input = ReplaceFirstOccurrence(input, item.Key, "");
                 }
 
 
@@ -360,9 +357,11 @@ namespace Kontaktsplitter
         }
 
         // Button click event für das hinzufügen eines Titels. Zeigt die entsprechende Oberfläche an
-        public void addTitle()
+        public void AddTitle()
         {
-            _addTitleView.ShowDialog();
+            var addTitleView = new AddTitleView(_contactModelModel);
+            addTitleView.DataContext = _contactModelModel;
+            addTitleView.ShowDialog();
         }
 
         // Ruft die setGender Methode nochmals auf, um den Input der Felder neu zu laden

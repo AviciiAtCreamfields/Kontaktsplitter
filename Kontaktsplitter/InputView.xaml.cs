@@ -39,7 +39,7 @@ namespace Kontaktsplitter
         //Um Titel hinzu zu fuegen wird eine neue View geoeffnet
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            _controller.addTitle();
+            _controller.AddTitle();
         }
 
        

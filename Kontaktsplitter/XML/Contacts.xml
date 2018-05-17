@@ -116,4 +116,112 @@
     <LastName>Riady</LastName>
     <Country>DE</Country>
   </Contact>
+  <Contact>
+    <Input>Frau Sandra Berger</Input>
+    <Title>
+    </Title>
+    <Salutation>Frau</Salutation>
+    <LetterSalutation>Sehr geeherte Frau </LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Sandra</FirstName>
+    <LastName>Berger</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr. Sandro Gutmensch</Input>
+    <Title>Dr. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr Dr. </LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Sandro</FirstName>
+    <LastName>Gutmensch</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Professor Heinreich Freiherr vom Wald</Input>
+    <Title>Freiherr Professor </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren Freiherr Professor </LetterSalutation>
+    <Gender>KeineAngabe</Gender>
+    <FirstName>Heinreich</FirstName>
+    <LastName>vom Wald</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Mrs. Doreen Faber</Input>
+    <Title>
+    </Title>
+    <Salutation>Mrs</Salutation>
+    <LetterSalutation>Dear Mrs </LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Doreen</FirstName>
+    <LastName>Faber</LastName>
+    <Country>EN</Country>
+  </Contact>
+  <Contact>
+    <Input>Mrs. Doreen Faber</Input>
+    <Title>
+    </Title>
+    <Salutation>Mrs</Salutation>
+    <LetterSalutation>Dear Mrs </LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Doreen</FirstName>
+    <LastName>Faber</LastName>
+    <Country>EN</Country>
+  </Contact>
+  <Contact>
+    <Input>Estobar y Gonzales</Input>
+    <Title>
+    </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren </LetterSalutation>
+    <Gender>KeineAngabe</Gender>
+    <FirstName>Estobar y</FirstName>
+    <LastName>Gonzales</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Frau Prof. Dr. rer. nat. Maria von Leuthauser-Schnarrenberger</Input>
+    <Title>Prof. Dr. rer. nat.</Title>
+    <Salutation>Frau</Salutation>
+    <LetterSalutation>Sehr geeherte Frau Prof. Dr. rer. nat.</LetterSalutation>
+    <Gender>f</Gender>
+    <FirstName>Maria von</FirstName>
+    <LastName>Leuthauser-Schnarrenberger</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Dr Russwurm, Winfried</Input>
+    <Title>Dr </Title>
+    <Salutation>
+    </Salutation>
+    <LetterSalutation>Sehr geeherte Damen und Herren Dr </LetterSalutation>
+    <Gender>KeineAngabe</Gender>
+    <FirstName>Winfried</FirstName>
+    <LastName>Russwurm</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dipl. Ing. Max von Mueller</Input>
+    <Title>Dipl. Ing. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr Dipl. Ing. </LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>
+    </FirstName>
+    <LastName>Mueller</LastName>
+    <Country>DE</Country>
+  </Contact>
+  <Contact>
+    <Input>Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens</Input>
+    <Title>Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. </Title>
+    <Salutation>Herr</Salutation>
+    <LetterSalutation>Sehr geeherter Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. </LetterSalutation>
+    <Gender>m</Gender>
+    <FirstName>Paul</FirstName>
+    <LastName>Steffens</LastName>
+    <Country>DE</Country>
+  </Contact>
 </Contacts>
